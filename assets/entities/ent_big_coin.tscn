@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://b6257r0qknq51"]
+
+[ext_resource type="Texture2D" uid="uid://cxfxlb5kcwdu4" path="res://sprites/spr_coin_big-Sheet.png" id="1_fp0bl"]
+[ext_resource type="Script" uid="uid://dkpc7wh1emsgj" path="res://assets/entities/scr_collectible.gd" id="1_seio3"]
+[ext_resource type="AudioStream" uid="uid://cn0r5oy1ncvhw" path="res://audio/streams(sounds)/pickupCoin.wav" id="3_kimes"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_seio3"]
+atlas = ExtResource("1_fp0bl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kimes"]
+atlas = ExtResource("1_fp0bl")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t7leu"]
+atlas = ExtResource("1_fp0bl")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkdqc"]
+atlas = ExtResource("1_fp0bl")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hr4t"]
+atlas = ExtResource("1_fp0bl")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dp3j"]
+atlas = ExtResource("1_fp0bl")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xb8s8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_seio3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kimes")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t7leu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkdqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hr4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dp3j")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xb8s8"]
+
+[node name="Collectable" type="Area2D" unique_id=1878374028]
+script = ExtResource("1_seio3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=480324690]
+sprite_frames = SubResource("SpriteFrames_xb8s8")
+autoplay = "default"
+frame_progress = 0.11093948
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1095219268]
+shape = SubResource("CircleShape2D_xb8s8")
+
+[node name="CollectSound" type="AudioStreamPlayer2D" parent="." unique_id=731332450]
+stream = ExtResource("3_kimes")
+bus = &"SFX"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

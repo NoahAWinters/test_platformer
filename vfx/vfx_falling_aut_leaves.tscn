@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dgxki2f1n5b1p"]
+
+[ext_resource type="Texture2D" uid="uid://hfli3yoocfnf" path="res://sprites/zzplaceholders/vfx/ELR_FallLeaf.png" id="1_xpti6"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vgtpk"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_xpti6"]
+offsets = PackedFloat32Array(0.0034364262, 0.12371134, 0.8281787, 1)
+colors = PackedColorArray(0.8862745, 0.8862745, 0.8862745, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.18039216)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xpti6"]
+gradient = SubResource("Gradient_xpti6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6bb5t"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(500, 200, 1)
+spread = 20.0
+initial_velocity_min = 20.0
+initial_velocity_max = 80.0
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = 49.99998
+gravity = Vector3(0, 10, 0)
+scale_min = 0.5
+scale_max = 1.25
+color_ramp = SubResource("GradientTexture1D_xpti6")
+anim_offset_max = 1.0
+
+[node name="FallingLeaves" type="GPUParticles2D" unique_id=1334687781]
+material = SubResource("CanvasItemMaterial_vgtpk")
+amount = 100
+texture = ExtResource("1_xpti6")
+visibility_rect = Rect2(-500, -200, 999.66, 400)
+process_material = SubResource("ParticleProcessMaterial_6bb5t")

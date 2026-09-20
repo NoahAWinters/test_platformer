@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://4fg3xjdmyjqo"]
+
+[ext_resource type="Script" uid="uid://8c1x6noadh2g" path="res://assets/entities/scr_ent_shroomy.gd" id="1_plmn2"]
+[ext_resource type="Texture2D" uid="uid://bdruidmldwo7h" path="res://sprites/spr_shroomy_1.png" id="1_ubivv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plmn2"]
+atlas = ExtResource("1_ubivv")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xb8s8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plmn2")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xb8s8"]
+size = Vector2(26, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plmn2"]
+size = Vector2(24, 3.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8d4tu"]
+size = Vector2(27.5, 20.5625)
+
+[node name="Shroomy" type="CharacterBody2D" unique_id=2125776763 node_paths=PackedStringArray("sprite")]
+scale = Vector2(2, 2)
+script = ExtResource("1_plmn2")
+sprite = NodePath("Sprite2D")
+bounce_factor = 1.25
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1660585813]
+position = Vector2(0, 14)
+sprite_frames = SubResource("SpriteFrames_xb8s8")
+offset = Vector2(0, -12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1758019217]
+shape = SubResource("RectangleShape2D_xb8s8")
+
+[node name="WallDetector" type="Area2D" parent="." unique_id=1182416687]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WallDetector" unique_id=1094417388]
+position = Vector2(0, -6.75)
+shape = SubResource("RectangleShape2D_plmn2")
+
+[node name="PlayerDetectors" type="Area2D" parent="." unique_id=1566476518]
+
+[node name="PlayerShape" type="CollisionShape2D" parent="PlayerDetectors" unique_id=1622646268]
+position = Vector2(0.25, -9.21875)
+shape = SubResource("RectangleShape2D_8d4tu")
+
+[connection signal="body_entered" from="WallDetector" to="." method="_on_wall_detector_body_entered"]
+[connection signal="body_entered" from="PlayerDetectors" to="." method="_on_player_detectors_body_entered"]
+[connection signal="body_entered" from="PlayerDetectors" to="." method="_on_wall_detector_body_entered"]

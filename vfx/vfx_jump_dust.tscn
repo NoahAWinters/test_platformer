@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://batpcmvbsn8ly"]
+
+[ext_resource type="Texture2D" uid="uid://crmo0cgh8jw00" path="res://sprites/spr_dust.png" id="1_6nom0"]
+
+[sub_resource type="Gradient" id="Gradient_tgjgk"]
+offsets = PackedFloat32Array(0.16838488, 0.7079038)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q26xn"]
+gradient = SubResource("Gradient_tgjgk")
+
+[sub_resource type="Curve" id="Curve_tgjgk"]
+_data = [Vector2(0, 0.30327863), 0.0, 0.0, 0, 0, Vector2(0.99053633, 0.6311475), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_q26xn"]
+curve = SubResource("Curve_tgjgk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dsda2"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 12.45
+spread = 35.0
+gravity = Vector3(0, 20, 0)
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_q26xn")
+color_ramp = SubResource("GradientTexture1D_q26xn")
+
+[node name="JumpDust" type="GPUParticles2D" unique_id=1728338063]
+z_index = 1
+amount = 20
+texture = ExtResource("1_6nom0")
+lifetime = 0.6
+explosiveness = 0.75
+randomness = 0.7
+process_material = SubResource("ParticleProcessMaterial_dsda2")

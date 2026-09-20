@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://c1ghewulvuagf"]
+
+[ext_resource type="Script" uid="uid://jlohvinqpaug" path="res://spike_trap.gd" id="1_hvydp"]
+[ext_resource type="Texture2D" uid="uid://b2f4s1nfadxc6" path="res://sprites/spr_trap.png" id="2_844o7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_844o7"]
+atlas = ExtResource("2_844o7")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xb8s8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_844o7")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xb8s8"]
+size = Vector2(20, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxu0d"]
+size = Vector2(26, 20.5625)
+
+[node name="SpikeTrap" type="CharacterBody2D" unique_id=1349961008 node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_hvydp")
+squash_max = 1.25
+sprite = NodePath("Sprite2D")
+metadata/_custom_type_script = "uid://bnv5cssxixoxi"
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=2095905889]
+position = Vector2(0, 15)
+sprite_frames = SubResource("SpriteFrames_xb8s8")
+offset = Vector2(0, -12)
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1932594564]
+shape = SubResource("RectangleShape2D_xb8s8")
+
+[node name="PlayerDetectors" type="Area2D" parent="." unique_id=1766542144]
+
+[node name="PlayerShape" type="CollisionShape2D" parent="PlayerDetectors" unique_id=41441499]
+shape = SubResource("RectangleShape2D_qxu0d")
+
+[connection signal="body_entered" from="PlayerDetectors" to="." method="_on_player_detectors_body_entered"]

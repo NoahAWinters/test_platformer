@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://8lxeah02i24x"]
+
+[ext_resource type="Script" uid="uid://dsgypbu1eymac" path="res://scripts/ui/scr_my_camera.gd" id="1_ykk5n"]
+
+[node name="Camera" type="Camera2D" unique_id=453079825]
+script = ExtResource("1_ykk5n")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1143474316]

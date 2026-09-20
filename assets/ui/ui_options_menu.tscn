@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://jdi0q26yhqhw"]
+
+[ext_resource type="Script" uid="uid://b5yta2o1yjp8x" path="res://scripts/ui/scr_ui_options_menu.gd" id="1_1jdab"]
+[ext_resource type="Shader" uid="uid://tilg4shtve3q" path="res://shaders/shader_blur.gdshader" id="2_lyko0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_twg14"]
+shader = ExtResource("2_lyko0")
+shader_parameter/lod = 0.800000038
+
+[node name="OptionsMenu" type="Control" unique_id=841622573]
+z_index = 1
+custom_minimum_size = Vector2(512, 288)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_1jdab")
+
+[node name="Blur" type="ColorRect" parent="." unique_id=2050541524]
+material = SubResource("ShaderMaterial_twg14")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GUI" type="PanelContainer" parent="." unique_id=492512029]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -144.0
+offset_right = 256.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBC all" type="VBoxContainer" parent="GUI" unique_id=306120407]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SettingsLabel" type="Label" parent="GUI/VBC all" unique_id=944715350]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+text = "Settings"
+
+[node name="HBC Checkboxes" type="HBoxContainer" parent="GUI/VBC all" unique_id=494640432]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="FullScreenCheckbox" type="CheckBox" parent="GUI/VBC all/HBC Checkboxes" unique_id=1917994611]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+text = "FullScreen"
+
+[node name="Audio Settings" type="Label" parent="GUI/VBC all" unique_id=1125929023]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+text = "Audio Settings"
+
+[node name="Master" type="Label" parent="GUI/VBC all" unique_id=1316284882]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+text = "Master"
+
+[node name="MasterSlider" type="HSlider" parent="GUI/VBC all" unique_id=776864451]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="Music" type="Label" parent="GUI/VBC all" unique_id=2054053979]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="GUI/VBC all" unique_id=280571525]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="SoundEffects" type="Label" parent="GUI/VBC all" unique_id=533020638]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Sound Effects"
+
+[node name="SFXSlider" type="HSlider" parent="GUI/VBC all" unique_id=1360004256]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="HBC Menu buttons" type="HBoxContainer" parent="GUI/VBC all" unique_id=1545019294]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ApplyChanges" type="Button" parent="GUI/VBC all/HBC Menu buttons" unique_id=885812602]
+layout_mode = 2
+text = "Apply Changes
+"
+
+[node name="CloseMenu" type="Button" parent="GUI/VBC all/HBC Menu buttons" unique_id=1635974113]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Close Menu
+"
+
+[connection signal="toggled" from="GUI/VBC all/HBC Checkboxes/FullScreenCheckbox" to="." method="_on_full_screen_checkbox_toggled"]
+[connection signal="mouse_exited" from="GUI/VBC all/MasterSlider" to="." method="_on_master_slider_mouse_exited"]
+[connection signal="mouse_exited" from="GUI/VBC all/MusicSlider" to="." method="_on_music_slider_mouse_exited"]
+[connection signal="mouse_exited" from="GUI/VBC all/SFXSlider" to="." method="_on_sfx_slider_mouse_exited"]
+[connection signal="pressed" from="GUI/VBC all/HBC Menu buttons/ApplyChanges" to="." method="_on_apply_changes_pressed"]
+[connection signal="pressed" from="GUI/VBC all/HBC Menu buttons/CloseMenu" to="." method="_on_close_pressed"]

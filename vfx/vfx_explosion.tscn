@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://3lua7u0duw0s"]
+
+[sub_resource type="Curve" id="Curve_f2k6o"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.10655737), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nmwei"]
+curve = SubResource("Curve_f2k6o")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nmwei"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 0.01
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_nmwei")
+
+[sub_resource type="GDScript" id="GDScript_3g2yv"]
+script/source = "extends GPUParticles2D
+@onready var explosion: GPUParticles2D = $\".\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+"
+
+[node name="Explosion" type="GPUParticles2D" unique_id=336843417]
+emitting = false
+amount = 60
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+process_material = SubResource("ParticleProcessMaterial_nmwei")
+script = SubResource("GDScript_3g2yv")

@@ -1,0 +1,27 @@
+# Godot 4+ specific ignores
+.godot/
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+/android/
+=======
+>>>>>>> cabe819 (initial)
+.nomedia
+
+# Godot-specific ignores
+.import/
+export.cfg
+export_credentials.cfg
+*.tmp
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json
+<<<<<<< HEAD
+=======
+>>>>>>> 288f29fd1503e5839944ff72fcfa747ba66362ac
+>>>>>>> cabe819 (initial)
