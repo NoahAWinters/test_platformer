@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://c1ghewulvuagf"]
+
+[ext_resource type="Script" uid="uid://b58lfi6s2jfn4" path="res://scripts/scr_spike_trap.gd" id="1_ogok6"]
+[ext_resource type="Texture2D" uid="uid://b2f4s1nfadxc6" path="res://sprites/spr_trap.png" id="2_844o7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xb8s8"]
+size = Vector2(26, 16.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m6s1a"]
+radius = 17.029387
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogok6"]
+atlas = ExtResource("2_844o7")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xb8s8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogok6")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SpikeTrap" type="CharacterBody2D" unique_id=2098547721 node_paths=PackedStringArray("sprite")]
+scale = Vector2(2, 2)
+slide_on_ceiling = false
+script = ExtResource("1_ogok6")
+bounce_factor = 5.0
+sprite = NodePath("Sprite2D")
+dmg = 1
+metadata/_custom_type_script = "uid://3jdxjt44if6v"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1758019217]
+position = Vector2(0, -1.75)
+shape = SubResource("RectangleShape2D_xb8s8")
+
+[node name="PlayerDetectors" type="Area2D" parent="." unique_id=1566476518]
+
+[node name="PlayerShape" type="CollisionShape2D" parent="PlayerDetectors" unique_id=1622646268]
+position = Vector2(0, -2.5)
+shape = SubResource("CircleShape2D_m6s1a")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1660585813]
+position = Vector2(0, 14)
+sprite_frames = SubResource("SpriteFrames_xb8s8")
+offset = Vector2(0, -12)
+
+[connection signal="body_entered" from="PlayerDetectors" to="." method="_on_player_detectors_body_entered"]

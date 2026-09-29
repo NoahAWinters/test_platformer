@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dbinykq3deb08"]
+
+[ext_resource type="Script" uid="uid://dkpc7wh1emsgj" path="res://entities/scripts/scr_collectible.gd" id="1_gyu6c"]
+[ext_resource type="Texture2D" uid="uid://dnlounyccscqu" path="res://sprites/spr_mug_2x.png" id="2_rs6ag"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xb8s8"]
+radius = 18.0
+
+[node name="Mug" type="Area2D" unique_id=234859606]
+script = ExtResource("1_gyu6c")
+score_bonus = 0
+metadata/_custom_type_script = "uid://dkpc7wh1emsgj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=989060190]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_xb8s8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=585986166]
+texture = ExtResource("2_rs6ag")
+
+[node name="CollectSound" type="AudioStreamPlayer2D" parent="." unique_id=1242926679]

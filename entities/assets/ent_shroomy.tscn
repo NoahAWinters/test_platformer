@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://4fg3xjdmyjqo"]
+
+[ext_resource type="Script" uid="uid://8c1x6noadh2g" path="res://entities/scripts/scr_ent_shroomy.gd" id="1_plmn2"]
+[ext_resource type="Texture2D" uid="uid://bdruidmldwo7h" path="res://sprites/spr_shroomy_1.png" id="1_ubivv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xb8s8"]
+size = Vector2(26, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plmn2"]
+size = Vector2(24, 3.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m6s1a"]
+radius = 19.006578
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_plmn2"]
+atlas = ExtResource("1_ubivv")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xb8s8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_plmn2")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Shroomy" type="CharacterBody2D" unique_id=2098547721 node_paths=PackedStringArray("sprite")]
+scale = Vector2(2, 2)
+motion_mode = 1
+slide_on_ceiling = false
+script = ExtResource("1_plmn2")
+bounce_factor = 5.0
+sprite = NodePath("Sprite2D")
+metadata/_custom_type_script = "uid://3jdxjt44if6v"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1758019217]
+shape = SubResource("RectangleShape2D_xb8s8")
+
+[node name="WallDetector" type="Area2D" parent="." unique_id=1182416687]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WallDetector" unique_id=1094417388]
+position = Vector2(0, -6.75)
+shape = SubResource("RectangleShape2D_plmn2")
+
+[node name="PlayerDetectors" type="Area2D" parent="." unique_id=1566476518]
+
+[node name="PlayerShape" type="CollisionShape2D" parent="PlayerDetectors" unique_id=1622646268]
+position = Vector2(0, -2.5)
+shape = SubResource("CircleShape2D_m6s1a")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=1660585813]
+position = Vector2(0, 14)
+sprite_frames = SubResource("SpriteFrames_xb8s8")
+offset = Vector2(0, -12)
+
+[connection signal="body_entered" from="PlayerDetectors" to="." method="_on_player_detectors_body_entered"]

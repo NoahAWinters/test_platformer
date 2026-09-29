@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://ghtxocspfasu"]
+
+[ext_resource type="Script" uid="uid://bjlmrp627n0vi" path="res://ui/scripts/scr_ui_pause_menu.gd" id="1_b5ct2"]
+[ext_resource type="Theme" uid="uid://c5vonrfphpvss" path="res://ui/resources/new_theme.tres" id="1_q3rkr"]
+[ext_resource type="Shader" uid="uid://tilg4shtve3q" path="res://shaders/shader_blur.gdshader" id="1_u2vh8"]
+[ext_resource type="PackedScene" uid="uid://bkm0i15vsp6ge" path="res://ui/assets/ui_button.tscn" id="3_u7pcw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rsak7"]
+shader = ExtResource("1_u2vh8")
+shader_parameter/lod = 0.0
+
+[sub_resource type="Animation" id="Animation_nkswn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blur:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_or4hu"]
+resource_name = "blur"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blur:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.800000038]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nkswn"]
+_data = {
+&"RESET": SubResource("Animation_nkswn"),
+&"blur": SubResource("Animation_or4hu")
+}
+
+[node name="PauseMenu" type="Control" unique_id=906233001 node_paths=PackedStringArray("default_button")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = ExtResource("1_q3rkr")
+script = ExtResource("1_b5ct2")
+default_button = NodePath("PanelContainer/VBoxContainer/Resume")
+
+[node name="Blur" type="ColorRect" parent="." unique_id=994361345]
+material = SubResource("ShaderMaterial_rsak7")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1065846885]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -266.0
+offset_right = 256.0
+offset_bottom = 266.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(340, 130)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1034644714]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Resume" parent="PanelContainer/VBoxContainer" unique_id=1815355845 instance=ExtResource("3_u7pcw")]
+layout_mode = 2
+default = true
+
+[node name="Restart" parent="PanelContainer/VBoxContainer" unique_id=399849215 instance=ExtResource("3_u7pcw")]
+layout_mode = 2
+text = "Restart"
+
+[node name="Options" parent="PanelContainer/VBoxContainer" unique_id=1781952359 instance=ExtResource("3_u7pcw")]
+layout_mode = 2
+text = "Options
+"
+
+[node name="Quit" parent="PanelContainer/VBoxContainer" unique_id=17767328 instance=ExtResource("3_u7pcw")]
+layout_mode = 2
+text = "Quit
+"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=400386883]
+libraries/ = SubResource("AnimationLibrary_nkswn")
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -15,18 +15,10 @@ func squash(stretch_min:float, stretch_max:float) -> Vector2:
 	return Vector2(stretch_min, stretch_max)
 
 func play_sfx(player: AudioStreamPlayer2D):
+	if player == null: return
 	player.pitch_scale = randf_range(1 - audio_pitch_range, 1 + audio_pitch_range)
 	player.play()
 
-#func spawn_impact(path: String, pos: Vector2):
-	#var p = preload().instantiate()
-	#p.position = pos
-	#p.emitting = true
-	#get_tree().current_scene.add_child(p)
-	#
-	## Auto-cleanup
-	#await p.finished
-	#p.queue_free()
 	
 func spawn_ghost(body, scale):
 	var ghost = body.duplicate()
@@ -49,6 +41,7 @@ func spawn_number(value: int, pos: Vector2):
 	var label = Label.new()
 	label.text = str(value)
 	label.position = pos
+	
 	# Center pivot for scaling
 	label.pivot_offset = label.size / 2 
 	add_child(label)
@@ -58,7 +51,7 @@ func spawn_number(value: int, pos: Vector2):
 	var end_pos = pos + Vector2(randf_range(-20, 20), -50)
 	
 	t.tween_property(label, "position", end_pos, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
-	t.tween_property(label, "scale", Vector2.ZERO, 0.2).set_delay(0.4)
+	t.tween_property(label, "scale", Vector2.ZERO, 0.2).set_delay(0.4)	
 	t.chain().tween_callback(label.queue_free)
 	
 	
@@ -78,7 +71,7 @@ func spawn_text(value: String, pos: Vector2):
 	var end_pos = pos + Vector2(randf_range(-20, 20), -50)
 	
 	t.tween_property(label, "position", end_pos, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
-	t.tween_property(label, "scale", Vector2.ZERO, 0.2).set_delay(0.4)
+	t.tween_property(label, "scale", Vector2.ZERO, 0.2).set_delay(0.8)
 	t.chain().tween_callback(label.queue_free)
 
 

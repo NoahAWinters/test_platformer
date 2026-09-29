@@ -1,0 +1,33 @@
+[gd_resource type="Theme" format=3 uid="uid://c5vonrfphpvss"]
+
+[ext_resource type="StyleBox" uid="uid://dmi12upiwn0nd" path="res://ui/resources/res_panel_container_flat_box.tres" id="1_7plh2"]
+[ext_resource type="FontFile" uid="uid://dtw8g7amoyl1b" path="res://ui/fonts/fibberish.ttf" id="1_14lsy"]
+[ext_resource type="FontFile" uid="uid://cuxxam7ow52e1" path="res://ui/fonts/pirkkala.ttf" id="2_14lsy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5lfxa"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymh24"]
+bg_color = Color(0.2, 0.17254902, 0.3137255, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.69411767, 0.8, 0.078431375, 1)
+
+[resource]
+default_font = ExtResource("2_14lsy")
+default_font_size = 32
+Button/font_sizes/font_size = 28
+Button/styles/focus = ExtResource("1_7plh2")
+Button/styles/hover = ExtResource("1_7plh2")
+Button/styles/normal = ExtResource("1_7plh2")
+Button/styles/pressed = ExtResource("1_7plh2")
+CheckBox/styles/focus = SubResource("StyleBoxEmpty_5lfxa")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_ymh24")
+RichTextLabel/colors/default_color = Color(0.69411767, 0.8, 0.078431375, 1)
+RichTextLabelTitle/base_type = &"RichTextLabel"
+RichTextLabelTitle/colors/default_color = Color(0.5803922, 0.8901961, 0.26666668, 1)
+RichTextLabelTitle/font_sizes/normal_font_size = 105
+RichTextLabelTitle/fonts/bold_font = ExtResource("1_14lsy")
+RichTextLabelTitle/fonts/normal_font = ExtResource("1_14lsy")
+VBoxContainer/constants/separation = 15

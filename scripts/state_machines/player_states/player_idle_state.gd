@@ -14,9 +14,4 @@ func update(delta:float):
 	
 func physics_update(delta:float):
 	#Apply (lack of) Move
-	if(player.direction):
-		var acceleration = player.GROUND_ACCELERATION
-		player.velocity.x = move_toward(player.velocity.x, player.direction * player.SPEED, acceleration * delta)
-	else:
-		var friction = player.GROUND_FRICTION
-		player.velocity.x = move_toward(player.velocity.x, 0, friction * delta)
+	GroundMove(delta)

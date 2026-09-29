@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cs1ib2jcu5bt5"]
+
+[ext_resource type="Script" uid="uid://dkpc7wh1emsgj" path="res://entities/scripts/scr_collectible.gd" id="1_6ay2r"]
+[ext_resource type="Texture2D" uid="uid://b6n4imryw2rqp" path="res://assets/spr_pepper.png" id="2_xf0a7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xb8s8"]
+radius = 23.021729
+
+[node name="Collectible" type="Area2D" unique_id=1823972266]
+script = ExtResource("1_6ay2r")
+score_bonus = 0
+health_bonus = 1
+metadata/_custom_type_script = "uid://dkpc7wh1emsgj"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=171119019]
+shape = SubResource("CircleShape2D_xb8s8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1638143554]
+texture = ExtResource("2_xf0a7")

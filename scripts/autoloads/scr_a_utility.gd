@@ -12,8 +12,6 @@ func _ready():
 func wait(time:float):
 	return get_tree().create_timer(time).timeout
 
-func get_sin(amp:float = 1, freq:float = 1) -> float:
-	return sin(Game.time * freq) * amp
 
 func get_cool_word(index:int) -> String:
 	return cool_words[index]
@@ -27,3 +25,6 @@ func get_cool_word_random() -> String:
 		current_exlaims += 1
 		
 	return radical_line
+
+func get_direction(body:Entity) -> bool:
+	return body.sprite.flip_h
